@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Kindra</title>
 
   <style>
@@ -12,24 +13,30 @@
       background: linear-gradient(to bottom, #9fb8ff, #eef3ff);
       color: #0b332b;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .phone {
-      width: 390px;
-      min-height: 780px;
+    .screen {
+      display: none;
+      min-height: 100vh;
       padding: 40px 28px;
       box-sizing: border-box;
+      text-align: center;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    .screen.active {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      text-align: center;
     }
 
-    .brand {
+    .brand-large {
       margin-top: 120px;
+    }
+
+    .brand-small {
+      margin-top: 80px;
     }
 
     h1 {
@@ -43,10 +50,6 @@
       font-size: 22px;
       line-height: 1.4;
       margin-top: 24px;
-    }
-
-    .button-area {
-      margin-bottom: 80px;
     }
 
     button {
@@ -66,28 +69,165 @@
       transform: scale(1.02);
     }
 
+    .primary-button {
+      background: white;
+    }
+
+    .gradient-button {
+      background: linear-gradient(to right, #9b5cff, #49d6dd);
+      color: #111;
+      margin-top: 20px;
+    }
+
     .footer-note {
       font-size: 13px;
       margin-top: 24px;
       line-height: 1.4;
       color: #17443b;
     }
+
+    .form-area {
+      margin-top: 40px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-left: 16px;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 20px;
+      box-sizing: border-box;
+      font-size: 18px;
+      margin-bottom: 26px;
+      background: white;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    .link {
+      display: block;
+      margin-top: 4px;
+      font-size: 16px;
+      color: #0b332b;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .bottom-text {
+      margin-top: auto;
+      margin-bottom: 24px;
+      font-size: 17px;
+      line-height: 1.4;
+      color: #111;
+    }
   </style>
 </head>
 
 <body>
-  <main class="phone">
-    <section class="brand">
+  <!-- Pantalla 1: Bienvenida -->
+  <main id="welcome-screen" class="screen active">
+    <section class="brand-large">
       <h1>Kindra</h1>
       <p class="tagline">Conexiones seguras entre generaciones.</p>
     </section>
 
-    <section class="button-area">
-      <button>¡Empecemos!</button>
+    <section>
+      <button class="primary-button" onclick="showScreen('login-screen')">
+        ¡Empecemos!
+      </button>
+
       <p class="footer-note">
         Kindra no es un servicio de emergencia, terapia ni cuidado médico.
       </p>
     </section>
   </main>
+
+  <!-- Pantalla 2: Login -->
+  <main id="login-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <p class="tagline">Conexiones seguras entre generaciones.</p>
+    </section>
+
+    <section class="form-area">
+      <label for="email">USUARIO:</label>
+      <input id="email" type="email" placeholder="Email" />
+
+      <label for="password">CONTRASEÑA:</label>
+      <input id="password" type="password" placeholder="Contraseña" />
+
+      <span class="link">Olvidé mi contraseña</span>
+    </section>
+
+    <section>
+      <p class="bottom-text">
+        ¿No tenés una cuenta? ¡No hay problema!
+      </p>
+
+      <button class="primary-button" onclick="showScreen('role-screen')">
+        CREAR CUENTA
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 3: Elegir rol -->
+  <main id="role-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <p class="tagline">CREAR CUENTA</p>
+
+      <h2>¿Cómo querés usar Kindra?</h2>
+    </section>
+
+    <section class="form-area">
+      <button class="primary-button" onclick="alert('Próximo paso: perfil de persona mayor')">
+        SOY UNA PERSONA MAYOR
+      </button>
+
+      <br><br>
+
+      <button class="primary-button" onclick="alert('Próximo paso: perfil de acompañante')">
+        QUIERO ACOMPAÑAR A UNA PERSONA MAYOR
+      </button>
+
+      <br><br>
+
+      <button class="primary-button" onclick="alert('Próximo paso: persona de confianza')">
+        SOY UNA PERSONA DE CONFIANZA
+      </button>
+
+      <br><br>
+
+      <button class="primary-button" onclick="alert('Próximo paso: institución')">
+        SOY UNA INSTITUCIÓN
+      </button>
+    </section>
+
+    <section>
+      <p class="footer-note">
+        Kindra no es un servicio de emergencia, terapia ni cuidado médico.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    function showScreen(screenId) {
+      const screens = document.querySelectorAll('.screen');
+
+      screens.forEach(function(screen) {
+        screen.classList.remove('active');
+      });
+
+      document.getElementById(screenId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
