@@ -18,7 +18,7 @@
     .screen {
       display: none;
       min-height: 100vh;
-      padding: 40px 28px;
+      padding: 34px 28px;
       box-sizing: border-box;
       text-align: center;
       max-width: 430px;
@@ -31,25 +31,31 @@
       justify-content: space-between;
     }
 
-    .brand-large {
-      margin-top: 120px;
-    }
-
-    .brand-small {
-      margin-top: 80px;
-    }
-
     h1 {
-      font-size: 64px;
+      font-size: 58px;
       margin: 0;
       letter-spacing: 1px;
       color: #06362d;
     }
 
+    h2 {
+      font-size: 24px;
+      margin: 20px 0;
+      color: #06362d;
+    }
+
+    .brand-large {
+      margin-top: 110px;
+    }
+
+    .brand-small {
+      margin-top: 30px;
+    }
+
     .tagline {
-      font-size: 22px;
+      font-size: 21px;
       line-height: 1.4;
-      margin-top: 24px;
+      margin-top: 18px;
     }
 
     button {
@@ -58,19 +64,17 @@
       background: white;
       color: #111;
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
-      padding: 18px 38px;
+      padding: 16px 28px;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      margin: 8px 0;
+      width: 100%;
     }
 
     button:hover {
-      transform: scale(1.02);
-    }
-
-    .primary-button {
-      background: white;
+      transform: scale(1.01);
     }
 
     .gradient-button {
@@ -79,35 +83,44 @@
       margin-top: 20px;
     }
 
+    .secondary-button {
+      background: transparent;
+      box-shadow: none;
+      text-decoration: underline;
+      font-size: 15px;
+      padding: 8px;
+      color: #06362d;
+    }
+
     .footer-note {
       font-size: 13px;
-      margin-top: 24px;
+      margin-top: 18px;
       line-height: 1.4;
       color: #17443b;
     }
 
     .form-area {
-      margin-top: 40px;
+      margin-top: 24px;
     }
 
     label {
       display: block;
       text-align: left;
       margin-left: 16px;
-      margin-bottom: 8px;
-      font-size: 16px;
+      margin-bottom: 7px;
+      font-size: 15px;
       font-weight: bold;
       color: #111;
     }
 
-    input {
+    input, select {
       width: 100%;
       border: none;
       border-radius: 999px;
-      padding: 20px;
+      padding: 17px;
       box-sizing: border-box;
-      font-size: 18px;
-      margin-bottom: 26px;
+      font-size: 17px;
+      margin-bottom: 18px;
       background: white;
       font-family: Georgia, 'Times New Roman', serif;
     }
@@ -123,15 +136,74 @@
 
     .bottom-text {
       margin-top: auto;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       font-size: 17px;
       line-height: 1.4;
       color: #111;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .choice {
+      background: white;
+      border-radius: 22px;
+      padding: 16px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #111;
+    }
+
+    .choice.selected {
+      outline: 3px solid #06362d;
+      background: #f5f8ff;
+    }
+
+    .checkbox-area {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .checkbox-area label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 12px 0;
+      font-size: 15px;
+      font-weight: normal;
+    }
+
+    .checkbox-area input {
+      width: auto;
+      margin: 3px 0 0 0;
+    }
+
+    .dashboard-card {
+      background: white;
+      border-radius: 28px;
+      padding: 22px;
+      margin: 16px 0;
+      color: #111;
+      text-align: left;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-card h3 {
+      margin-top: 0;
+      color: #06362d;
     }
   </style>
 </head>
 
 <body>
+
   <!-- Pantalla 1: Bienvenida -->
   <main id="welcome-screen" class="screen active">
     <section class="brand-large">
@@ -140,10 +212,7 @@
     </section>
 
     <section>
-      <button class="primary-button" onclick="showScreen('login-screen')">
-        ¡Empecemos!
-      </button>
-
+      <button onclick="showScreen('login-screen')">¡Empecemos!</button>
       <p class="footer-note">
         Kindra no es un servicio de emergencia, terapia ni cuidado médico.
       </p>
@@ -158,13 +227,15 @@
     </section>
 
     <section class="form-area">
-      <label for="email">USUARIO:</label>
-      <input id="email" type="email" placeholder="Email" />
+      <label>USUARIO:</label>
+      <input type="email" placeholder="Email" />
 
-      <label for="password">CONTRASEÑA:</label>
-      <input id="password" type="password" placeholder="Contraseña" />
+      <label>CONTRASEÑA:</label>
+      <input type="password" placeholder="Contraseña" />
 
-      <span class="link">Olvidé mi contraseña</span>
+      <span class="link" onclick="showScreen('forgot-password-screen')">
+        Olvidé mi contraseña
+      </span>
     </section>
 
     <section>
@@ -172,8 +243,29 @@
         ¿No tenés una cuenta? ¡No hay problema!
       </p>
 
-      <button class="primary-button" onclick="showScreen('role-screen')">
-        CREAR CUENTA
+      <button onclick="showScreen('role-screen')">CREAR CUENTA</button>
+    </section>
+  </main>
+
+  <!-- Pantalla: Olvidé contraseña -->
+  <main id="forgot-password-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>Recuperar contraseña</h2>
+    </section>
+
+    <section class="form-area">
+      <p>Ingresá tu email y te enviaremos instrucciones para recuperar tu cuenta.</p>
+
+      <label>EMAIL:</label>
+      <input type="email" placeholder="tu@email.com" />
+
+      <button onclick="alert('En la versión real, acá se enviará un email de recuperación.')">
+        ENVIAR INSTRUCCIONES
+      </button>
+
+      <button class="secondary-button" onclick="showScreen('login-screen')">
+        Volver al inicio de sesión
       </button>
     </section>
   </main>
@@ -183,32 +275,14 @@
     <section class="brand-small">
       <h1>Kindra</h1>
       <p class="tagline">CREAR CUENTA</p>
-
       <h2>¿Cómo querés usar Kindra?</h2>
     </section>
 
     <section class="form-area">
-      <button class="primary-button" onclick="alert('Próximo paso: perfil de persona mayor')">
-        SOY UNA PERSONA MAYOR
-      </button>
-
-      <br><br>
-
-      <button class="primary-button" onclick="alert('Próximo paso: perfil de acompañante')">
-        QUIERO ACOMPAÑAR A UNA PERSONA MAYOR
-      </button>
-
-      <br><br>
-
-      <button class="primary-button" onclick="alert('Próximo paso: persona de confianza')">
-        SOY UNA PERSONA DE CONFIANZA
-      </button>
-
-      <br><br>
-
-      <button class="primary-button" onclick="alert('Próximo paso: institución')">
-        SOY UNA INSTITUCIÓN
-      </button>
+      <button onclick="selectRole('Persona mayor')">SOY UNA PERSONA MAYOR</button>
+      <button onclick="selectRole('Acompañante')">QUIERO ACOMPAÑAR A UNA PERSONA MAYOR</button>
+      <button onclick="selectRole('Persona de confianza')">SOY UNA PERSONA DE CONFIANZA</button>
+      <button onclick="selectRole('Institución')">SOY UNA INSTITUCIÓN</button>
     </section>
 
     <section>
@@ -218,7 +292,236 @@
     </section>
   </main>
 
+  <!-- Pantalla 4: Datos personales -->
+  <main id="personal-info-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>Crear cuenta</h2>
+    </section>
+
+    <section class="form-area">
+      <label>NOMBRE:</label>
+      <input id="firstName" type="text" placeholder="Nombre" />
+
+      <label>APELLIDO:</label>
+      <input type="text" placeholder="Apellido" />
+
+      <label>EMAIL:</label>
+      <input type="email" placeholder="Email" />
+
+      <label>TELÉFONO:</label>
+      <input type="tel" placeholder="Teléfono" />
+
+      <label>FECHA DE NACIMIENTO:</label>
+      <input type="date" />
+
+      <label>CONTRASEÑA:</label>
+      <input type="password" placeholder="Contraseña" />
+
+      <button class="gradient-button" onclick="showScreen('location-screen')">
+        CONTINUAR
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 5: Ubicación -->
+  <main id="location-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>¿Dónde estás?</h2>
+    </section>
+
+    <section class="form-area">
+      <label>PAÍS:</label>
+      <select>
+        <option>Uruguay</option>
+        <option>Estados Unidos</option>
+        <option>Argentina</option>
+        <option>Otro</option>
+      </select>
+
+      <label>ESTADO / DEPARTAMENTO:</label>
+      <input type="text" placeholder="Ej: Montevideo / Texas" />
+
+      <label>CIUDAD:</label>
+      <input type="text" placeholder="Ej: Montevideo / Austin" />
+
+      <label>BARRIO / ZONA:</label>
+      <input type="text" placeholder="Ej: Pocitos / West Austin" />
+
+      <label>CÓDIGO POSTAL, SI APLICA:</label>
+      <input type="text" placeholder="Código postal" />
+
+      <p class="footer-note">
+        Tu dirección exacta no será visible para otros usuarios.
+      </p>
+
+      <button class="gradient-button" onclick="showScreen('interests-screen')">
+        CONTINUAR
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 6: Intereses -->
+  <main id="interests-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>Intereses</h2>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div class="choice" onclick="toggleChoice(this)">Familia</div>
+        <div class="choice" onclick="toggleChoice(this)">Historia</div>
+        <div class="choice" onclick="toggleChoice(this)">Música</div>
+        <div class="choice" onclick="toggleChoice(this)">Lectura</div>
+        <div class="choice" onclick="toggleChoice(this)">Fe / espiritualidad</div>
+        <div class="choice" onclick="toggleChoice(this)">Cocina</div>
+        <div class="choice" onclick="toggleChoice(this)">Jardinería</div>
+        <div class="choice" onclick="toggleChoice(this)">Viajes</div>
+        <div class="choice" onclick="toggleChoice(this)">Actualidad</div>
+        <div class="choice" onclick="toggleChoice(this)">Tecnología</div>
+        <div class="choice" onclick="toggleChoice(this)">Memorias de vida</div>
+        <div class="choice" onclick="toggleChoice(this)">Otros</div>
+      </div>
+
+      <button class="gradient-button" onclick="showScreen('availability-screen')">
+        GUARDAR INTERESES
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 7: Disponibilidad -->
+  <main id="availability-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>¿Cuándo estás disponible?</h2>
+    </section>
+
+    <section class="checkbox-area">
+      <h3>DÍAS</h3>
+      <label><input type="checkbox"> Lunes</label>
+      <label><input type="checkbox"> Martes</label>
+      <label><input type="checkbox"> Miércoles</label>
+      <label><input type="checkbox"> Jueves</label>
+      <label><input type="checkbox"> Viernes</label>
+      <label><input type="checkbox"> Sábado</label>
+      <label><input type="checkbox"> Domingo</label>
+
+      <h3>HORARIOS</h3>
+      <label><input type="checkbox"> Mañana</label>
+      <label><input type="checkbox"> Tarde</label>
+      <label><input type="checkbox"> Noche</label>
+
+      <h3>DURACIÓN PREFERIDA</h3>
+      <label><input type="radio" name="duration"> 15 minutos</label>
+      <label><input type="radio" name="duration"> 30 minutos</label>
+      <label><input type="radio" name="duration"> 45 minutos</label>
+      <label><input type="radio" name="duration"> 1 hora</label>
+
+      <button class="gradient-button" onclick="showScreen('verification-screen')">
+        CONTINUAR
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 8: Verificación -->
+  <main id="verification-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>Verificación de seguridad</h2>
+    </section>
+
+    <section>
+      <p>
+        Para proteger a nuestra comunidad, todos los usuarios deberán verificar su identidad.
+      </p>
+
+      <button onclick="alert('En la versión real, acá se subirá un documento válido.')">
+        SUBIR DOCUMENTO
+      </button>
+
+      <button onclick="alert('En la versión real, acá se subirá una selfie.')">
+        SUBIR SELFIE
+      </button>
+
+      <p class="footer-note">
+        Tu documento se usa solo para verificar tu identidad y no será visible para otros usuarios.
+      </p>
+
+      <button class="gradient-button" onclick="showScreen('consent-screen')">
+        CONTINUAR
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 9: Consentimiento -->
+  <main id="consent-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2>Consentimiento y seguridad</h2>
+    </section>
+
+    <section class="checkbox-area">
+      <p>
+        Kindra ofrece acompañamiento social no clínico. No reemplaza terapia,
+        atención médica, servicios de emergencia ni cuidado profesional.
+      </p>
+
+      <label><input type="checkbox"> Acepto los términos de uso.</label>
+      <label><input type="checkbox"> Acepto la política de privacidad.</label>
+      <label><input type="checkbox"> Acepto el código de conducta.</label>
+      <label><input type="checkbox"> Entiendo que Kindra no es un servicio de emergencia.</label>
+      <label><input type="checkbox"> Entiendo que no se permite pedir dinero, regalos, claves o datos bancarios.</label>
+
+      <button class="gradient-button" onclick="showScreen('dashboard-screen')">
+        ACEPTAR Y CONTINUAR
+      </button>
+    </section>
+  </main>
+
+  <!-- Pantalla 10: Dashboard -->
+  <main id="dashboard-screen" class="screen">
+    <section class="brand-small">
+      <h1>Kindra</h1>
+      <h2 id="welcomeMessage">Hola</h2>
+    </section>
+
+    <section>
+      <div class="dashboard-card">
+        <h3>Mi próxima conexión</h3>
+        <p>Todavía no tenés una llamada agendada.</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Buscar conexiones</h3>
+        <p>Próximamente podrás encontrar personas compatibles según ubicación, intereses e idioma.</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Seguridad</h3>
+        <p>Podés reportar cualquier situación incómoda o sospechosa.</p>
+      </div>
+
+      <button onclick="alert('Próximamente: agendar llamada')">
+        AGENDAR LLAMADA
+      </button>
+
+      <button onclick="alert('Próximamente: reportar problema')">
+        REPORTAR UN PROBLEMA
+      </button>
+    </section>
+
+    <section>
+      <p class="footer-note">
+        En caso de emergencia, contactá a los servicios locales de emergencia.
+      </p>
+    </section>
+  </main>
+
   <script>
+    let selectedRole = "";
+
     function showScreen(screenId) {
       const screens = document.querySelectorAll('.screen');
 
@@ -227,7 +530,22 @@
       });
 
       document.getElementById(screenId).classList.add('active');
+
+      if (screenId === 'dashboard-screen') {
+        const name = document.getElementById('firstName').value || 'bienvenida/o';
+        document.getElementById('welcomeMessage').innerText = 'Hola, ' + name;
+      }
+    }
+
+    function selectRole(role) {
+      selectedRole = role;
+      showScreen('personal-info-screen');
+    }
+
+    function toggleChoice(element) {
+      element.classList.toggle('selected');
     }
   </script>
+
 </body>
 </html>
